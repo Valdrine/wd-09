@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>해운대 빛 축제</title>
     <link rel="stylesheet" href="./css/common.css">
+    <script src="./script/jquery-1.12.4.js"></script>
 </head>
 <body>
     <div class="wrap">
@@ -55,7 +56,7 @@
             <div class="contents">
                 <div class="tab">
                     <div class="tab_title">
-                        <h2>공지사항</h2>
+                        <h2 class="active">공지사항</h2>
                         <h2>갤러리</h2>
                     </div>
                     <div class="tab_contents">
@@ -100,9 +101,90 @@
                         2023(c) 해운대 빛 축제  All right reserved.
                     </p>
                 </div>
+                <div class="family">
+                    <select name="" id="">
+                        <option value="네이버">네이버</option>
+                        <option value="다음">다음</option>
+                        <option value="구글">구글</option>
+                        <option value="마소">마소</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="modal">
+        <h2>타이틀</h2>
+        <p>사랑의 그들을 공자는 그들은 이는 얼마나 피다. 산야에 풀이 석가는 창공에 길을 희망의 하여도 것이다.
+
+            용기가 때에, 영원히 가는 열매를 되려니와, 인간의 싸인 웅대한 힘있다. 주며, 있는 그들은 소금이라 봄날의 가치를 있는가? 거친 현저하게 수 우는 발휘하기 바이며, 그리하였는가?
+            
+            것은 소리다.이것은 할지니, 그들에게 청춘이 아름다우냐? 열매를 스며들어 어디 굳세게 우리의 온갖 봄바람이다. 거선의 고행을 석가는 크고 두손을 새 관현악이며, 약동하다.
+        </p>
+        <a href="#" class="close_btn">닫기</a>
+    </div>
+
+    <script>
+        //메뉴
+        $('.gnb > li').hover(
+            function(){
+                $(this).find('ul').stop().slideDown()
+            }, 
+            function(){
+                $(this).find('ul').stop().slideUp()
+            }
+        )
+        //슬라이드
+        // setInterval(function(){
+        //     $('.slide').animate({top:-350},function(){
+        //         $('.slide div:first').appendTo('.slide')
+        //         $('.slide').css('top', 0)
+        //     })
+        // }, 1000)
+
+        // setInterval(function(){
+        //     $('.slide').animate({left:-800},function(){
+        //         $('.slide div:first').appendTo('.slide')
+        //         $('.slide').css('left', 0)
+        //     })
+        // }, 1000)
+
+        var i = 0
+        $('.slide div').eq(i).show()
+        setInterval(function(){
+            var j = (i+1) %3
+            
+            $('.slide div').eq(i).fadeOut()
+            $('.slide div').eq(j).fadeIn()
+            
+            i = j
+
+        }, 1000)
+
+        //탭
+        $('.tab_title h2').click(function(){
+            $('.tab_title h2').removeClass('active')
+            $(this).addClass('active')
+
+            // $(this).index() = 0 / 1
+            let index = $(this).index()
+
+
+            $('.tab_contents ul').css('display','none')
+            $('.tab_contents ul').eq(index).css('display','block')
+            
+            
+        })
+        //모달
+        $('.notice li:first').click(function(){
+            $('.modal').show()
+        })
+
+        $('.close_btn').click(function(){
+            $('.modal').fadeOut('fast')
+        })
+        
+    </script>
     
 </body>
 </html>
